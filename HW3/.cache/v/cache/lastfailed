@@ -1,0 +1,9 @@
+{
+  "test_impl.py::TestNetwork::()::test_add_relation_doesnt_allow_multiple_relations_between_two_people": true,
+  "test_impl.py::TestNetwork::()::test_add_relation_property_fails_on_no_relation": true,
+  "test_impl.py::TestNetwork::()::test_add_relation_property_overwrites_existing_prop": true,
+  "test_impl.py::TestNetwork::()::test_friends_of_friends_fails_on_nonexistent_name": true,
+  "test_impl.py::TestNetwork::()::test_friends_of_friends_only_accepts_strings": true,
+  "test_impl.py::TestNetwork::()::test_get_person_only_accepts_strings": true,
+  "test_impl.py::TestNetwork::()::test_get_person_raises_error_on_nonexistent_name": true
+}
