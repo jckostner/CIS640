@@ -29,7 +29,13 @@ class AuthenticationComponent(object):
         # return True if user_name and password represent an existing user; False, otherwise
         assert isinstance(user_name, str)
         assert isinstance(password, str)
-        pass
+        try:
+            pw_for_user_name = self.data_store.read(user_name)
+            if pw_for_user_name == password:
+                return True
+            return False
+        except(RuntimeError):
+            return False
         # assert isinstance(ret_val, bool)
 
     def change_password(self, user_name, new_password):
@@ -37,7 +43,7 @@ class AuthenticationComponent(object):
         # return True if password was changed to new_password; False, otherwise
         assert isinstance(user_name, str)
         assert isinstance(new_password, str)
-        pass
+        return self.data_store.update(user_name, new_password)
         # assert isinstance(ret_val, bool)
 
     def rename_user(self, user_name, new_user_name):
@@ -45,5 +51,14 @@ class AuthenticationComponent(object):
         # return True if user was renamed; False, otherwise
         assert isinstance(user_name, str)
         assert isinstance(new_user_name, str)
+        try:
+            password = self.data_store.read(user_name)
+        except(RuntimeError):
+            return False
+        deleted = self.data_store.delete(user_name)
+        if deleted:
+            return self.data_store.create(new_user_name, password)
+        else:
+            return False
         pass
         # assert isinstance(ret_val, bool)
